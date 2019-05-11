@@ -7,17 +7,20 @@ Example: `/slashcommand hello` will call the `hello` handler function. That's it
 
 ### Handling `application/x-www-form-urlencoded`
 
-Slack send their POST requests using `Content-Type: application/x-www-form-urlencoded`.
+Slack sends their `POST` requests using `Content-Type: application/x-www-form-urlencoded`. This is not a content type that Lambda supports out-of-the-box. We need to do some legwork in order to map that raw request body to `JSON` which we can understand more easily in our node handler function.
 
 Preliminary setup:
 
 * You must create a standalone `POST` resource action
 * Be sure "Integration type" is set to "Lambda Function"
 * Make sure `Use Lambda Proxy integration` is checked
+* Remove the original `ANY` resource action to be sure it doesn't conflict
 
 #### Mapping templates
 
-In order to properly handle `application/x-www-form-urlencoded`, we need to make a mapping template for it. Here are the steps:
+In order to properly handle `application/x-www-form-urlencoded`, we need to make a mapping template for it.
+
+Here are the steps:
 
 * Click on "Integration Request" when viewing the details of your `POST` resource action
 * Pop open the "Mapping templates" accordion
@@ -75,11 +78,12 @@ In order to properly handle `application/x-www-form-urlencoded`, we need to make
 }
 ```
 
-* Click save to confirm the content of the textarea
+* Paste the content above in the textarea
+* Click "Save" to confirm the content of the textarea
 * From the "Actions" dropdown select "Deploy API"
 * Deploy the API changes as you normally would
 
-You should now be able to transform the URI encoded `application/x-www-form-urlencoded` into JSON
+Now you should now be able to handle `POST` requests with content type of `application/x-www-form-urlencoded` and they will be converted right into `JSON` automatically!
 
 ### Testing
 
