@@ -1,0 +1,24 @@
+{
+  "name": "slashcommand",
+  "version": "1.0.0",
+  "description": "Provides a simple mechanism for mapping Slack slash commands to pre-built responses",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/lambda-local -f index -e hello-command.json"
+  },
+  "keywords": [
+    "slack",
+    "slash",
+    "commands",
+    "node"
+  ],
+  "author": {
+    "name": "James Doyle",
+    "email": "james2doyle@gmail.com",
+    "url": "https://ohdoylerules.com/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "aws-lambda-local": "^2.0.6"
+  }
+}
